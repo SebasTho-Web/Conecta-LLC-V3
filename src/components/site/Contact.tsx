@@ -1,9 +1,10 @@
-import { useState, type FormEvent, type ReactNode } from "react";
+import { useState, useEffect, useRef, type FormEvent, type ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "@formspree/react";
 import { z } from "zod";
 import { useLang } from "@/lib/i18n";
 import { Reveal } from "./Reveal";
-import { CheckCircle2, Send, X } from "lucide-react";
+import { CheckCircle2, Loader2, Send, X } from "lucide-react";
 
 const schema = z.object({
   name: z.string().trim().min(1).max(120),
@@ -38,13 +39,34 @@ function Field({
 
 export function Contact() {
   const { t, lang } = useLang();
+  const [formKey, setFormKey] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [clientError, setClientError] = useState<string | null>(null);
   const [agreed, setAgreed] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const [formState, handleFormspreeSubmit] = useForm("mqejgkwy");
+
+  /* Show our success modal whenever Formspree reports success */
+  useEffect(() => {
+    if (formState.succeeded) {
+      setShowSuccess(true);
+      setAgreed(false);
+    }
+  }, [formState.succeeded]);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!agreed) return;
+
+    if (!agreed) {
+      setClientError(
+        lang === "en"
+          ? "Please accept the privacy policy."
+          : "Por favor acepta la política de privacidad."
+      );
+      return;
+    }
+
     const f = new FormData(e.currentTarget);
     const data = {
       name: String(f.get("name") ?? ""),
@@ -56,14 +78,24 @@ export function Contact() {
     };
     const result = schema.safeParse(data);
     if (!result.success) {
-      setError("Please complete all fields and accept the policy.");
+      setClientError(
+        lang === "en"
+          ? "Please complete all fields correctly."
+          : "Por favor completa todos los campos correctamente."
+      );
       return;
     }
-    setError(null);
-    setShowSuccess(true);
-    setAgreed(false);
-    (e.target as HTMLFormElement).reset();
+
+    setClientError(null);
+    handleFormspreeSubmit(e);
   };
+
+  const closeSuccess = () => {
+    setShowSuccess(false);
+    setFormKey((k) => k + 1);
+  };
+
+  const sendingText = lang === "en" ? "Sending…" : "Enviando…";
 
   return (
     <section
@@ -100,6 +132,8 @@ export function Contact() {
 
         <Reveal delay={120} className="lg:col-span-3">
           <form
+            key={formKey}
+            ref={formRef}
             onSubmit={onSubmit}
             className="rounded-3xl border border-border/70 bg-background p-6 shadow-card sm:p-10"
           >
@@ -202,13 +236,31 @@ export function Contact() {
                 )}
               </span>
             </label>
-            {error && <p className="mt-3 text-sm text-destructive">{error}</p>}
+
+            {clientError && (
+              <p className="mt-3 text-sm text-destructive">{clientError}</p>
+            )}
+            {formState.errors && (
+              <p className="mt-3 text-sm text-destructive">
+                {Array.isArray((formState.errors as any).form)
+                  ? (formState.errors as any).form.join(", ")
+                  : lang === "en"
+                    ? "Something went wrong. Please try again."
+                    : "Algo salió mal. Por favor intenta de nuevo."}
+              </p>
+            )}
+
             <button
               type="submit"
-              disabled={!agreed}
+              disabled={!agreed || formState.submitting}
               className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-purple px-7 py-3.5 text-sm font-medium text-primary-foreground shadow-soft transition-all hover:shadow-glow hover:scale-[1.02] disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed"
             >
-              <Send className="h-4 w-4" /> {t("form.submit")}
+              {formState.submitting ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <Send className="h-4 w-4" />
+              )}
+              {formState.submitting ? sendingText : t("form.submit")}
             </button>
           </form>
         </Reveal>
@@ -218,7 +270,7 @@ export function Contact() {
         <div className="fixed inset-0 z-[60] flex items-center justify-center bg-foreground/40 p-4 backdrop-blur-sm">
           <div className="relative w-full max-w-md rounded-3xl bg-background p-8 text-center shadow-glow">
             <button
-              onClick={() => setShowSuccess(false)}
+              onClick={closeSuccess}
               className="absolute right-4 top-4 text-muted-foreground hover:text-foreground"
             >
               <X className="h-5 w-5" />
