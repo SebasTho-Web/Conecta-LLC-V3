@@ -189,7 +189,6 @@ interface SettingsProps {
 
 interface DraftState {
   analytics: boolean;
-  preferences: boolean;
 }
 
 function SettingsModal({
@@ -204,7 +203,6 @@ function SettingsModal({
   const previouslyFocused = useRef<HTMLElement | null>(null);
   const [draft, setDraft] = useState<DraftState>({
     analytics: consent?.analytics ?? false,
-    preferences: consent?.preferences ?? false,
   });
   const [announcement, setAnnouncement] = useState("");
 
@@ -327,16 +325,6 @@ function SettingsModal({
             )}
             checked={draft.analytics}
             onChange={() => toggle("analytics")}
-          />
-          <ToggleRow
-            id="cookie-toggle-preferences"
-            label={t("Preferences", "Preferencias")}
-            description={t(
-              "Remember choices like language or theme.",
-              "Recuerda elecciones como idioma o tema.",
-            )}
-            checked={draft.preferences}
-            onChange={() => toggle("preferences")}
           />
         </div>
 

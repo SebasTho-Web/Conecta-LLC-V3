@@ -1,13 +1,13 @@
 /**
  * CookieManager - GDPR script & cookie management utility.
  *
- * Categories: analytics, preferences. (No marketing/ads.)
+ * Only category: analytics. Essential storage (language, theme, consent
+ * itself) is exempt from consent under the ePrivacy Directive.
  *
  * Consent shape (stored under `cookieConsent`):
  *   {
  *     consented: boolean,
  *     analytics: boolean,
- *     preferences: boolean,
  *     timestamp: string (ISO-8601)
  *   }
  */
@@ -17,12 +17,11 @@ export const CONSENT_STORAGE_KEY = "cookieConsent";
 /** Replace with your real Google Analytics 4 Measurement ID (e.g. "G-XXXXXXXXXX"). */
 export const GA_MEASUREMENT_ID = "G-TRACKINGID";
 
-export type ConsentCategory = "analytics" | "preferences";
+export type ConsentCategory = "analytics";
 
 export interface CookieConsent {
   consented: boolean;
   analytics: boolean;
-  preferences: boolean;
   timestamp: string;
 }
 
@@ -36,7 +35,6 @@ export function buildConsent(value: boolean): CookieConsent {
   return {
     consented: true,
     analytics: value,
-    preferences: value,
     timestamp: new Date().toISOString(),
   };
 }
@@ -50,7 +48,6 @@ export function readConsent(): CookieConsent | null {
     return {
       consented: Boolean(parsed.consented),
       analytics: Boolean(parsed.analytics),
-      preferences: Boolean(parsed.preferences),
       timestamp: parsed.timestamp ?? new Date().toISOString(),
     };
   } catch {
