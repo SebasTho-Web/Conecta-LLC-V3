@@ -2,7 +2,6 @@ import { LanguageProvider, useLang } from "@/lib/i18n";
 import { ThemeProvider } from "@/lib/theme";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
-import { CookieBanner } from "@/components/CookieBanner";
 import { Link } from "react-router-dom";
 import {
   X,
@@ -223,7 +222,6 @@ export default function TermsOfService() {
         <Navbar />
         <TermsOfServiceContent />
         <Footer />
-        <CookieBanner />
       </LanguageProvider>
     </ThemeProvider>
   );
