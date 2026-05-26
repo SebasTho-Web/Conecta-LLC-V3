@@ -204,7 +204,6 @@ function SettingsModal({
   const previouslyFocused = useRef<HTMLElement | null>(null);
   const [draft, setDraft] = useState<DraftState>({
     analytics: consent?.analytics ?? false,
-    marketing: consent?.marketing ?? false,
     preferences: consent?.preferences ?? false,
   });
   const [announcement, setAnnouncement] = useState("");
