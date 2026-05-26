@@ -43,7 +43,7 @@ export function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <button
           onClick={() => scrollTo("home")}
-          className="hidden md:flex items-center xl:mr-10"
+          className="hidden md:flex items-center lg:mr-6"
           aria-label="Conecta home"
         >
           <span
@@ -56,7 +56,7 @@ export function Navbar() {
           </span>
         </button>
 
-        <nav className="hidden xl:flex items-center gap-7 xl:mr-8">
+        <nav className="hidden lg:flex items-center gap-7 lg:mr-4">
           {links.map((l) => (
             <button
               key={l.id}
