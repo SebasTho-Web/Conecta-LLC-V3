@@ -189,7 +189,6 @@ interface SettingsProps {
 
 interface DraftState {
   analytics: boolean;
-  marketing: boolean;
   preferences: boolean;
 }
 
@@ -205,7 +204,6 @@ function SettingsModal({
   const previouslyFocused = useRef<HTMLElement | null>(null);
   const [draft, setDraft] = useState<DraftState>({
     analytics: consent?.analytics ?? false,
-    marketing: consent?.marketing ?? false,
     preferences: consent?.preferences ?? false,
   });
   const [announcement, setAnnouncement] = useState("");
@@ -329,16 +327,6 @@ function SettingsModal({
             )}
             checked={draft.analytics}
             onChange={() => toggle("analytics")}
-          />
-          <ToggleRow
-            id="cookie-toggle-marketing"
-            label={t("Marketing", "Marketing")}
-            description={t(
-              "Used to deliver relevant ads and measure campaigns.",
-              "Para mostrar anuncios relevantes y medir campañas.",
-            )}
-            checked={draft.marketing}
-            onChange={() => toggle("marketing")}
           />
           <ToggleRow
             id="cookie-toggle-preferences"
