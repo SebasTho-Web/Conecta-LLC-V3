@@ -2,7 +2,7 @@ import { LanguageProvider, useLang } from "@/lib/i18n";
 import { ThemeProvider } from "@/lib/theme";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
-import { CookieBanner } from "@/components/site/CookieBanner";
+import { CookieBanner } from "@/components/CookieBanner";
 import { Link } from "react-router-dom";
 import { X, Info, Cookie, Settings, ShieldCheck } from "lucide-react";
 
@@ -196,10 +196,11 @@ function CookiePolicyContent() {
                   </p>
                   <button
                     onClick={() => {
-                      localStorage.removeItem("conecta.cookieConsent");
+                      localStorage.removeItem("cookieConsent");
                       window.dispatchEvent(
-                        new CustomEvent("conecta-reset-cookie-consent"),
+                        new CustomEvent("cookieConsent:reset"),
                       );
+                      window.location.reload();
                     }}
                     className="cursor-pointer mt-4 inline-flex items-center justify-center rounded-full bg-gradient-purple px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-soft transition-all hover:scale-[1.02] hover:shadow-glow active:scale-[0.98]"
                   >
@@ -398,10 +399,11 @@ function CookiePolicyContent() {
                   </p>
                   <button
                     onClick={() => {
-                      localStorage.removeItem("conecta.cookieConsent");
+                      localStorage.removeItem("cookieConsent");
                       window.dispatchEvent(
-                        new CustomEvent("conecta-reset-cookie-consent"),
+                        new CustomEvent("cookieConsent:reset"),
                       );
+                      window.location.reload();
                     }}
                     className="cursor-pointer mt-4 inline-flex items-center justify-center rounded-full bg-gradient-purple px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-soft transition-all hover:scale-[1.02] hover:shadow-glow active:scale-[0.98]"
                   >

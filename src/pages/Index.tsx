@@ -13,7 +13,7 @@ import { Careers } from "@/components/site/Careers";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppFab } from "@/components/site/WhatsAppFab";
-import { CookieBanner } from "@/components/site/CookieBanner";
+import { CookieBanner } from "@/components/CookieBanner";
 
 export default function Index() {
   return (
