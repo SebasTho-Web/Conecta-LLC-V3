@@ -1,17 +1,16 @@
-import React from "react";
+import { MessageCircle } from "lucide-react";
 
 export function WhatsAppFab() {
   return (
     <a
-      aria-label="WhatsApp contact"
       href="https://wa.me/35699319746"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed right-6 bottom-6 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full bg-gradient-purple text-primary-foreground shadow-glow"
+      aria-label="Chat on WhatsApp"
+      className="fixed bottom-6 right-6 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-glow transition-all hover:scale-110"
     >
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
-        <path d="M21 15.5a4.5 4.5 0 0 1-4.5 4.5h-8l-4 1 1-4V7A4.5 4.5 0 0 1 9 2.5h6A4.5 4.5 0 0 1 19.5 7v8.5z" fill="currentColor" />
-      </svg>
+      <span className="absolute inset-0 animate-ping rounded-full bg-[#25D366]/40" />
+      <MessageCircle className="relative h-6 w-6" />
     </a>
   );
 }

@@ -1,45 +1,33 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 export function Reveal({
   children,
   className = "",
   delay = 0,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   delay?: number;
 }) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const [inView, setInView] = useState(false);
-
+  const ref = useRef<HTMLDivElement>(null);
+  const [shown, setShown] = useState(false);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => setInView(true), delay);
-            obs.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.08 }
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => setShown(e.isIntersecting)),
+      { threshold: 0.15 },
     );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [delay]);
-
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
   return (
     <div
       ref={ref}
-      className={`${className} transition-all duration-700 ease-out transform ${
-        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-      }`}
+      className={`reveal ${shown ? "in" : ""} ${className}`}
+      style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
     </div>
   );
 }
-
-export default Reveal;
