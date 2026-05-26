@@ -329,16 +329,6 @@ function SettingsModal({
             onChange={() => toggle("analytics")}
           />
           <ToggleRow
-            id="cookie-toggle-marketing"
-            label={t("Marketing", "Marketing")}
-            description={t(
-              "Used to deliver relevant ads and measure campaigns.",
-              "Para mostrar anuncios relevantes y medir campañas.",
-            )}
-            checked={draft.marketing}
-            onChange={() => toggle("marketing")}
-          />
-          <ToggleRow
             id="cookie-toggle-preferences"
             label={t("Preferences", "Preferencias")}
             description={t(
