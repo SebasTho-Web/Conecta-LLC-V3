@@ -114,14 +114,6 @@ export function Footer() {
               Cookie Policy
             </Link>
             <a
-              href="https://www.instagram.com/students.conecta/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white"
-            >
-              Instagram
-            </a>
-            <a
               href="https://www.linkedin.com/in/sebastian-thörnholm-282053310"
               target="_blank"
               rel="noopener noreferrer"
