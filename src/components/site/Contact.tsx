@@ -240,9 +240,13 @@ export function Contact() {
             {clientError && (
               <p className="mt-3 text-sm text-destructive">{clientError}</p>
             )}
-            {formState.errors && formState.errors.length > 0 && (
+            {formState.errors && (
               <p className="mt-3 text-sm text-destructive">
-                {formState.errors.map((err) => err.message).join(", ")}
+                {Array.isArray((formState.errors as any).form)
+                  ? (formState.errors as any).form.join(", ")
+                  : lang === "en"
+                    ? "Something went wrong. Please try again."
+                    : "Algo salió mal. Por favor intenta de nuevo."}
               </p>
             )}
 
