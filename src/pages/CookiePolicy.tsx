@@ -3,14 +3,8 @@ import { ThemeProvider } from "@/lib/theme";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Link } from "react-router-dom";
-import { X, Info, Cookie, Settings, ShieldCheck } from "lucide-react";
+import { X, Info, Cookie, ShieldCheck } from "lucide-react";
 
-/**
- * Cookie Policy Page Component
- *
- * Explains localized cookie rules and local storage parameters. Satisfies the EU ePrivacy Directive ("Cookie Law").
- * Switches dynamically between English and Spanish based on user i18n selections.
- */
 function CookiePolicyContent() {
   const { lang } = useLang();
 
@@ -34,7 +28,6 @@ function CookiePolicyContent() {
         </div>
 
         {lang === "en" ? (
-          /* ==================== ENGLISH COOKIE POLICY ==================== */
           <article className="prose prose-slate dark:prose-invert max-w-none">
             <h1
               className="font-serif text-4xl sm:text-5xl tracking-tight text-foreground"
@@ -50,33 +43,29 @@ function CookiePolicyContent() {
               <section className="space-y-3">
                 <h2 className="font-serif text-2xl text-foreground flex items-center gap-2 border-b border-border/60 pb-2">
                   <Info className="h-5 w-5 text-primary shrink-0" />
-                  1. What Are Cookies and Local Storage?
+                  Information about cookies &amp; personal data
                 </h2>
                 <p>
-                  A cookie is a small text file placed onto your device when you
-                  browse websites. Similar to cookies, we use browser{" "}
-                  <strong>Local Storage</strong> keys to store preference
-                  variables locally. These technologies help websites memorize
-                  your inputs, layouts, and preference variables over a duration
-                  of time so you do not have to reconfigure them when reloading
-                  or switching pages.
+                  <strong>Cookies:</strong> We only use strictly necessary
+                  functions (local storage) to remember your choice of language
+                  and design theme (light/dark mode). We do not use any
+                  tracking, statistical or marketing cookies, so you do not
+                  have to worry about an annoying cookie banner with us.
+                </p>
+                <p>
+                  <strong>Personal data:</strong> When you use our contact
+                  form, your data is sent securely via our form service
+                  Formspree. We only save your name, email address and message
+                  to be able to answer your question. We never sell or share
+                  your data with third parties.
                 </p>
               </section>
 
               <section className="space-y-3">
                 <h2 className="font-serif text-2xl text-foreground flex items-center gap-2 border-b border-border/60 pb-2">
                   <Cookie className="h-5 w-5 text-primary shrink-0" />
-                  2. Cookies & Local Storage Parameters We Use
+                  Local Storage Parameters We Use
                 </h2>
-                <p>
-                  Conecta All Nations respects your privacy. We{" "}
-                  <strong>only</strong> employ strictly functional, necessary
-                  first-party cookies and local storage items on this website.
-                  We do not place third-party advertising cookies, performance
-                  trackers, or behavioral profiling markers.
-                </p>
-
-                {/* Visual Storage Parameters Table */}
                 <div className="overflow-x-auto mt-4 rounded-xl border border-border">
                   <table className="w-full text-left text-sm whitespace-nowrap">
                     <thead className="bg-muted text-xs uppercase text-muted-foreground">
@@ -109,17 +98,6 @@ function CookiePolicyContent() {
                         </td>
                         <td className="px-4 py-3">Persistent until cleared</td>
                       </tr>
-                      <tr>
-                        <td className="px-4 py-3 font-mono font-bold text-foreground">
-                          conecta.cookieConsent
-                        </td>
-                        <td className="px-4 py-3">Local Storage</td>
-                        <td className="px-4 py-3">
-                          Remembers if you declined ("declined") or accepted
-                          ("accepted") this banner overlay.
-                        </td>
-                        <td className="px-4 py-3">Persistent until cleared</td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -128,96 +106,27 @@ function CookiePolicyContent() {
               <section className="space-y-3">
                 <h2 className="font-serif text-2xl text-foreground flex items-center gap-2 border-b border-border/60 pb-2">
                   <ShieldCheck className="h-5 w-5 text-primary shrink-0" />
-                  3. Why Are These Essential?
+                  Why Are These Essential?
                 </h2>
                 <p>
                   Under European Union General Data Protection Regulation and
                   the Malta electronic communications rules, strictly necessary
-                  user preference identifiers **do not** require prior cookie
+                  user preference identifiers do not require prior cookie
                   consent because without them, basic functions chosen
                   explicitly by the visitor (for example, switching language
                   from EN to ES, or enabling dark mode) cannot be fulfilled.
                 </p>
-                <p>
-                  However, we believe in complete transparency, which is why we
-                  provide a quick accept/decline action so you have total
-                  autonomy of what values reside in your browser's persistent
-                  cache.
-                </p>
               </section>
 
               <section className="space-y-3">
                 <h2 className="font-serif text-2xl text-foreground flex items-center gap-2 border-b border-border/60 pb-2">
-                  <Settings className="h-5 w-5 text-primary shrink-0" />
-                  4. How Can You Control and Clear Cookies?
-                </h2>
-                <p>
-                  You can inspect, clear, delete, or disable all stored
-                  parameters by diving into your browser's safety and
-                  configuration settings. Clearing your browser cache or site
-                  data will immediately wipe all persistent local
-                  configurations, returning Conecta back to its original default
-                  values (English and Light theme). Below are short guides on
-                  where to locate these options:
-                </p>
-                <ul className="list-disc pl-6 space-y-1.5 text-sm">
-                  <li>
-                    <strong>Google Chrome:</strong> Settings {">"} Privacy and
-                    Security {">"} Third-party cookies {">"} See all site data
-                    and permissions.
-                  </li>
-                  <li>
-                    <strong>Apple Safari:</strong> Settings / Preferences {">"}{" "}
-                    Advanced {">"} Privacy {">"} Manage Website Data.
-                  </li>
-                  <li>
-                    <strong>Mozilla Firefox:</strong> Settings {">"} Privacy &
-                    Security {">"} Cookies and Site Data.
-                  </li>
-                  <li>
-                    <strong>Microsoft Edge:</strong> Settings {">"} Cookies and
-                    site permissions {">"} Manage and delete cookies and site
-                    data.
-                  </li>
-                </ul>
-
-                {/* Interactive preference reset section */}
-                <div className="mt-8 rounded-2xl border border-primary/20 bg-primary/5 p-6 shadow-sm">
-                  <h4 className="font-serif text-lg text-foreground font-semibold flex items-center gap-2">
-                    <Cookie className="h-5 w-5 text-primary" />
-                    Instantly Adjust Your Choice
-                  </h4>
-                  <p className="mt-2 text-sm text-foreground/80 leading-relaxed">
-                    Would you like to change your previous selection? Clearing
-                    your consent status will immediately bring back the
-                    interactive cookie banner, letting you grant or reject
-                    tracking permissions again.
-                  </p>
-                  <button
-                    onClick={() => {
-                      localStorage.removeItem("cookieConsent");
-                      window.dispatchEvent(
-                        new CustomEvent("cookieConsent:reset"),
-                      );
-                      window.location.reload();
-                    }}
-                    className="cursor-pointer mt-4 inline-flex items-center justify-center rounded-full bg-gradient-purple px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-soft transition-all hover:scale-[1.02] hover:shadow-glow active:scale-[0.98]"
-                  >
-                    Reset Cookie Preferences
-                  </button>
-                </div>
-              </section>
-
-              <section className="space-y-3">
-                <h2 className="font-serif text-2xl text-foreground flex items-center gap-2 border-b border-border/60 pb-2">
-                  <Settings className="h-5 w-5 text-primary shrink-0" />
-                  5. Contact Us
+                  <Info className="h-5 w-5 text-primary shrink-0" />
+                  Contact Us
                 </h2>
                 <p>
                   Our goal is to keep our digital footprint minimalist and
                   secure. For any questions surrounding our use of cookies or
-                  technical storage, you are invited to email our team directly
-                  at{" "}
+                  personal data, you are invited to email our team directly at{" "}
                   <a
                     className="text-primary underline font-medium hover:text-primary-glow"
                     href="mailto:students.conecta@gmail.com"
@@ -230,7 +139,6 @@ function CookiePolicyContent() {
             </div>
           </article>
         ) : (
-          /* ==================== SPANISH COOKIE POLICY ==================== */
           <article className="prose prose-slate dark:prose-invert max-w-none">
             <h1
               className="font-serif text-4xl sm:text-5xl tracking-tight text-foreground"
@@ -246,34 +154,31 @@ function CookiePolicyContent() {
               <section className="space-y-3">
                 <h2 className="font-serif text-2xl text-foreground flex items-center gap-2 border-b border-border/60 pb-2">
                   <Info className="h-5 w-5 text-primary shrink-0" />
-                  1. ¿Qué son las Cookies y el Almacenamiento Local?
+                  Información sobre cookies y datos personales
                 </h2>
                 <p>
-                  Una cookie es un pequeño archivo de texto que se coloca en su
-                  dispositivo al navegar por un sitio web. Al igual que las
-                  cookies tradicionales, utilizamos el{" "}
-                  <strong>Almacenamiento Local (Local Storage)</strong> de su
-                  navegador para guardar variables de personalización de forma
-                  100% local. Estas tecnologías facilitan que el sitio memorice
-                  su idioma, tema y respuestas para que no tenga que volver a
-                  configurarlos al recargar el portal.
+                  <strong>Cookies:</strong> Solo utilizamos funciones
+                  estrictamente necesarias (almacenamiento local) para recordar
+                  su elección de idioma y tema de diseño (modo claro/oscuro).
+                  No utilizamos cookies de seguimiento, estadísticas ni
+                  marketing, así que no tiene que preocuparse por un molesto
+                  banner de cookies con nosotros.
+                </p>
+                <p>
+                  <strong>Datos personales:</strong> Cuando utiliza nuestro
+                  formulario de contacto, sus datos se envían de forma segura
+                  a través de nuestro servicio de formularios Formspree. Solo
+                  guardamos su nombre, dirección de correo electrónico y
+                  mensaje para poder responder a su pregunta. Nunca vendemos ni
+                  compartimos sus datos con terceros.
                 </p>
               </section>
 
               <section className="space-y-3">
                 <h2 className="font-serif text-2xl text-foreground flex items-center gap-2 border-b border-border/60 pb-2">
                   <Cookie className="h-5 w-5 text-primary shrink-0" />
-                  2. Cookies y Parámetros que Empleamos
+                  Parámetros de almacenamiento local que empleamos
                 </h2>
-                <p>
-                  Conecta All Nations valora su privacidad. En este portal{" "}
-                  <strong>únicamente</strong> utilizamos elementos técnicos de
-                  almacenamiento de primera parte estrictamente necesarios. No
-                  insertamos cookies de publicidad externa, ni sistemas
-                  analíticos de monitoreo de comportamento de terceros.
-                </p>
-
-                {/* Visual Storage Parameters Table ES */}
                 <div className="overflow-x-auto mt-4 rounded-xl border border-border">
                   <table className="w-full text-left text-sm whitespace-nowrap">
                     <thead className="bg-muted text-xs uppercase text-muted-foreground">
@@ -304,21 +209,8 @@ function CookiePolicyContent() {
                         </td>
                         <td className="px-4 py-3">Local Storage</td>
                         <td className="px-4 py-3">
-                          Resguarda la selección de visualización clara (light)
-                          o oscura (dark).
-                        </td>
-                        <td className="px-4 py-3">
-                          Persistente hasta ser borrado
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3 font-mono font-bold text-foreground">
-                          conecta.cookieConsent
-                        </td>
-                        <td className="px-4 py-3">Local Storage</td>
-                        <td className="px-4 py-3">
-                          Determina si rechazó ("declined") o aceptó
-                          ("accepted") el aviso inferior.
+                          Resguarda la selección de visualización clara
+                          (light) u oscura (dark).
                         </td>
                         <td className="px-4 py-3">
                           Persistente hasta ser borrado
@@ -332,89 +224,23 @@ function CookiePolicyContent() {
               <section className="space-y-3">
                 <h2 className="font-serif text-2xl text-foreground flex items-center gap-2 border-b border-border/60 pb-2">
                   <ShieldCheck className="h-5 w-5 text-primary shrink-0" />
-                  3. ¿Por qué son indispensables?
+                  ¿Por qué son indispensables?
                 </h2>
                 <p>
                   Bajo la directiva de Privacidad Electrónica (ePrivacy
                   Directive) de la Unión Europea y las leyes de comunicaciones
                   electrónicas de Malta, los registros que almacenan puramente
-                  preferencias e idioma del visitante **están exentos** de la
+                  preferencias e idioma del visitante están exentos de la
                   obligación de consentimiento previo. Sin ellos, el sitio web
                   sería incapaz de recordar el idioma que usted ha seleccionado
                   explícitamente para ver la web de Conecta.
                 </p>
-                <p>
-                  Aun así, por transparencia total, incorporamos un panel
-                  inferior donde puede manifestar su conformidad o negar el
-                  almacenamiento local.
-                </p>
               </section>
 
               <section className="space-y-3">
                 <h2 className="font-serif text-2xl text-foreground flex items-center gap-2 border-b border-border/60 pb-2">
-                  <Settings className="h-5 w-5 text-primary shrink-0" />
-                  4. Control de Cookies y Cómo Eliminarlas
-                </h2>
-                <p>
-                  Usted tiene plena autonomía para borrar, bloquear o vaciar los
-                  parámetros configurados en este portal ingresando en la
-                  sección de seguridad de su explorador de internet. Al vaciar
-                  sus archivos temporales de navegación, el sitio web se
-                  reiniciará a sus predefinidos básicos (idioma inglés, tema
-                  claro). He aquí dónde hallar estos controles en los
-                  navegadores principales:
-                </p>
-                <ul className="list-disc pl-6 space-y-1.5 text-sm">
-                  <li>
-                    <strong>Google Chrome:</strong> Configuración {">"}{" "}
-                    Privacidad y seguridad {">"} Cookies de terceros {">"} Ver
-                    todos los datos y permisos de sitios.
-                  </li>
-                  <li>
-                    <strong>Apple Safari:</strong> Ajustes / Preferencias {">"}{" "}
-                    Privacidad {">"} Gestionar datos de sitios web.
-                  </li>
-                  <li>
-                    <strong>Mozilla Firefox:</strong> Ajustes {">"} Privacidad &
-                    Seguridad {">"} Cookies y datos del sitio.
-                  </li>
-                  <li>
-                    <strong>Microsoft Edge:</strong> Configuración {">"} Cookies
-                    y permisos del sitio {">"} Ver cookies y datos del sitio.
-                  </li>
-                </ul>
-
-                {/* Interactive preference reset section in Spanish */}
-                <div className="mt-8 rounded-2xl border border-primary/20 bg-primary/5 p-6 shadow-sm">
-                  <h4 className="font-serif text-lg text-foreground font-semibold flex items-center gap-2">
-                    <Cookie className="h-5 w-5 text-primary" />
-                    Cambiar su Elección Al Instante
-                  </h4>
-                  <p className="mt-2 text-sm text-foreground/80 leading-relaxed">
-                    ¿Desea cambiar su selección anterior? El borrado de su
-                    preferencia actual de consentimiento restablecerá
-                    inmediatamente el panel interactivo, permitiéndole aceptar o
-                    revocar los permisos de análisis de nuevo.
-                  </p>
-                  <button
-                    onClick={() => {
-                      localStorage.removeItem("cookieConsent");
-                      window.dispatchEvent(
-                        new CustomEvent("cookieConsent:reset"),
-                      );
-                      window.location.reload();
-                    }}
-                    className="cursor-pointer mt-4 inline-flex items-center justify-center rounded-full bg-gradient-purple px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-soft transition-all hover:scale-[1.02] hover:shadow-glow active:scale-[0.98]"
-                  >
-                    Restablecer Preferencias de Cookies
-                  </button>
-                </div>
-              </section>
-
-              <section className="space-y-3">
-                <h2 className="font-serif text-2xl text-foreground flex items-center gap-2 border-b border-border/60 pb-2">
-                  <Settings className="h-5 w-5 text-primary shrink-0" />
-                  5. Contáctenos
+                  <Info className="h-5 w-5 text-primary shrink-0" />
+                  Contáctenos
                 </h2>
                 <p>
                   Nuestro propósito es mantener una huella digital sobria,
