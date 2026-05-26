@@ -1,0 +1,6 @@
+{
+  "name": "Conecta",
+  "description": "Connecting students, expats and workers in Malta with resources, community, and support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
