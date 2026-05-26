@@ -189,7 +189,6 @@ interface SettingsProps {
 
 interface DraftState {
   analytics: boolean;
-  marketing: boolean;
   preferences: boolean;
 }
 

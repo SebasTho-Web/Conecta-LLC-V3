@@ -69,7 +69,6 @@ export function useCookieConsent() {
         readConsent() ?? {
           consented: true,
           analytics: false,
-          marketing: false,
           preferences: false,
           timestamp: new Date().toISOString(),
         };
