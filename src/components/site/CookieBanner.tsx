@@ -128,27 +128,28 @@ export function CookieBanner() {
   const [visible, setVisible] = useState(false);
   const [animatedVisible, setAnimatedVisible] = useState(false);
 
-  // Read local storage on mount to determine if user has already made a selection.
+  // On mount: apply stored consent (or show banner if none).
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (!localStorage.getItem(STORAGE_KEY)) {
+    const consent = localStorage.getItem(STORAGE_KEY);
+    if (consent === "accepted") {
+      injectAnalytics();
+    } else if (!consent) {
       setVisible(true);
-      const timer = setTimeout(() => {
-        setAnimatedVisible(true);
-      }, 100);
+      const timer = setTimeout(() => setAnimatedVisible(true), 100);
       return () => clearTimeout(timer);
     }
+    // "declined" → do nothing; nothing was injected.
   }, []);
 
-  // Listen for custom reset event to re-open the banner dynamically
+  // Allow other pages (e.g. Cookie Policy) to re-open the banner.
   useEffect(() => {
     if (typeof window === "undefined") return;
     const handleReset = () => {
       removeAndClearAnalytics();
+      localStorage.removeItem(STORAGE_KEY);
       setVisible(true);
-      setTimeout(() => {
-        setAnimatedVisible(true);
-      }, 50);
+      setTimeout(() => setAnimatedVisible(true), 50);
     };
     window.addEventListener("conecta-reset-cookie-consent", handleReset);
     return () => {
@@ -156,17 +157,6 @@ export function CookieBanner() {
     };
   }, []);
 
-  // Synchronize dynamic script-loading state on change/load
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const consent = localStorage.getItem(STORAGE_KEY);
-    if (consent === "accepted") {
-      injectAnalytics();
-    } else {
-      // Explicitly block and clear tracking by default if declined or if no choice has been made yet
-      removeAndClearAnalytics();
-    }
-  }, [visible]);
 
   /**
    * Persists the user's decision inside local storage and dismisses the layout with fade-out.
