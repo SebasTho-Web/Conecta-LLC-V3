@@ -43,16 +43,17 @@ export function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <button
           onClick={() => scrollTo("how")}
-          className="hidden md:flex items-center lg:mr-6"
+          className="group hidden md:flex items-center lg:mr-6 transition-transform duration-300 ease-out hover:scale-105 active:scale-95 active:duration-150"
           aria-label="Conecta home"
         >
           <span
-            className={`whitespace-nowrap font-serif font-bold tracking-tight transition-all ${
+            className={`relative whitespace-nowrap font-serif font-bold tracking-tight transition-all duration-300 ${
               scrolled ? "text-lg sm:text-xl" : "text-xl sm:text-2xl"
-            }`}
+            } group-hover:drop-shadow-[0_0_12px_rgba(167,139,212,0.55)]`}
             style={{ color: "#A78BD4" }}
           >
             Conecta
+            <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-[#A78BD4] transition-all duration-300 ease-out group-hover:w-full rounded-full" />
           </span>
         </button>
 
