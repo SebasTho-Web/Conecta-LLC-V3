@@ -1,5 +1,3 @@
-import { LanguageProvider } from "@/lib/i18n";
-import { ThemeProvider } from "@/lib/theme";
 import { Navbar } from "@/components/site/Navbar";
 import { Hero } from "@/components/site/Hero";
 import { About } from "@/components/site/About";
@@ -16,24 +14,22 @@ import { WhatsAppFab } from "@/components/site/WhatsAppFab";
 
 export default function Index() {
   return (
-    <ThemeProvider>
-      <LanguageProvider>
-        <Navbar />
-        <main>
-          <Hero />
-          <About />
-          <Services />
-          <WhyMalta />
-          <HowItWorks />
-          <Testimonials />
-          <FAQ />
-          <Blog />
-          <Careers />
-          <Contact />
-        </main>
-        <Footer />
-        <WhatsAppFab />
-      </LanguageProvider>
-    </ThemeProvider>
+    <>
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Services />
+        <WhyMalta />
+        <HowItWorks />
+        <Testimonials />
+        <FAQ />
+        <Blog />
+        <Careers />
+        <Contact />
+      </main>
+      <Footer />
+      <WhatsAppFab />
+    </>
   );
 }
