@@ -160,13 +160,13 @@ export const translations: Record<Lang, Dict> = {
     "cta.start": "Comienza Tu Viaje",
     "hero.title": "Tu Próximo Capítulo Comienza Aquí",
     "hero.sub":
-      "Conectamos a estudiantes y profesionales latinoamericanos con programas académicos, prácticas y oportunidades laborales de clase mundial en Malta y más allá.",
+      "Conectamos a estudiantes y profesionales latinoamericanos con programas académicos, intercambios y oportunidades laborales de clase mundial en Malta y más allá.",
     "hero.cta1": "Explora Nuestros Programas",
     "hero.cta2": "Háblanos por WhatsApp",
     "about.eyebrow": "Sobre Conecta",
     "about.title": "Abrimos Puertas. Ahora Las Abrimos Para Ti",
     "about.body":
-      "Conecta All Nations es un equipo internacional con sede en Malta. Ayudamos a estudiantes y jóvenes profesionales latinoamericanos de 20 a 40 años, actualmente de Colombia y México, a estudiar en Europa y comenzar sus carreras internacionales. Trabajamos directamente con empresas maltesas para conectar a nuestros estudiantes con oportunidades reales.",
+      "Conecta – All Nations es un equipo internacional con sede en Malta. Conectamos estudiantes y talentos internacionales con oportunidades reales de estudio y desarrollo profesional en Europa, creando puentes entre personas, empresas y nuevas experiencias globales. Trabajamos directamente con empresas maltesas para conectar a nuestros estudiantes con oportunidades reales.",
     "about.stat1": "Países Atendidos",
     "about.stat2": "Paquetes de Servicio",
     "about.stat3": "Basados en Malta",

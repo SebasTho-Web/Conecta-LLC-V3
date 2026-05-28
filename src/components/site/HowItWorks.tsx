@@ -10,7 +10,7 @@ export function HowItWorks() {
     { icon: Plane, tk: "how.3.title", bk: "how.3.body" },
   ];
   return (
-    <section className="bg-background py-24 sm:py-32">
+    <section id="how" className="bg-background py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-3xl text-center">
           <span className="text-xs uppercase tracking-[0.3em] text-primary">
