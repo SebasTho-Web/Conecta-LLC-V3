@@ -46,7 +46,7 @@ export function Hero() {
               {words.map((w, i) => (
                 <span key={i} style={{ animationDelay: `${i * 110}ms` }}>
                   {w}
-                  {i < words.length - 1 ? "\u00A0" : ""}
+                  {i < words.length - 1 ? " " : ""}
                 </span>
               ))}
             </h1>
